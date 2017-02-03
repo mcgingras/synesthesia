@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Mail Art</title>
+
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js">
+  </script>
+
+  </head>
+  <body>
+
+    Mail Art Music.
+
+    <input type="text" id="js-query">
+    <button type="button" name="button" id="js-submit">submit</button>
+
+    <p id="js-results"></p>
+    <p id="js-user"></p>
+
+    <script src="app.js"></script>
+    <script src="firebase.js"></script>
+    <script>
+
+      $("#js-submit").on('click', function() {
+        var q = $('#js-query').val();
+        // searchAlbums(q);
+        searchSongs(q);
+       });
+
+    </script>
+
+  </body>
+</html>
