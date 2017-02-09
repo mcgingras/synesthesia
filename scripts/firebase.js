@@ -1,4 +1,7 @@
-  // Initialize Firebase
+/**
+* Firebase initialization and DB calls.
+* @author: Michael Gingras
+*/
   var config = {
     apiKey: "AIzaSyCqnANgYrB8Yzk-ALHfqdFnk8IDOuwOkjw",
     authDomain: "project-1969575520459744786.firebaseapp.com",
@@ -11,14 +14,16 @@
   // Initialize DB
   var database = firebase.database();
 
-  function writeUserData(userId, name) {
-    firebase.database().ref('users/' + userId).set({
-      username: name,
+  function writeSongData(albumId, song, artist, link) {
+    firebase.database().ref('albums/' +albumId).set({
+      song: song,
+      artist: artist,
+      url: link,
     });
   }
 
 
-firebase.database().ref('/users/' + 1).once('value').then(function(snapshot) {
-  var username = snapshot.val().username;
-  $('#js-user').text(username);
-});
+// firebase.database().ref('/users/' + 1).once('value').then(function(snapshot) {
+//   var username = snapshot.val().username;
+//   $('#js-user').text(username);
+// });

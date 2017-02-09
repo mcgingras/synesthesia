@@ -1,35 +1,80 @@
 <html>
   <head>
     <title>Mail Art</title>
-
     <script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
-  <script
-  src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js">
-  </script>
-
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+    <script
+    src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js">
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link rel="stylesheet" href="scripts/style.css">
   </head>
   <body>
 
-    Mail Art Music.
+    <!-- Mail Art Music.
 
     <input type="text" id="js-query">
     <button type="button" name="button" id="js-submit">submit</button>
 
     <p id="js-results"></p>
-    <p id="js-user"></p>
+    <p id="js-user"></p> -->
 
-    <script src="app.js"></script>
-    <script src="firebase.js"></script>
+    <div class="main flexbox-center">
+
+      <a href="pages/one.html">01</a>
+      <a href="pages/two.html">02</a>
+      <a href="pages/three.html">03</a>
+      <a href="pages/four.html">04</a>
+
+    </div>
+
+    <script src="scripts/spotify.js"></script>
+    <script src="scripts/firebase.js"></script>
+
     <script>
+
+      var songarray=[];
+      var audioObject;
 
       $("#js-submit").on('click', function() {
         var q = $('#js-query').val();
         // searchAlbums(q);
         searchSongs(q);
        });
+
+      $(document).on('click', "#js-song-link", function(){
+        var id = $(this).data(id);
+        var song   = songarray[id.id].song;
+        var artist = songarray[id.id].artist;
+        var url    = songarray[id.id].url;
+
+        writeSongData(1,song,artist,url);
+
+         if($(".js-playing").length > 0){
+           audioObject.pause();
+         }
+
+         else{
+
+         audioObject = new Audio(url);
+         console.log(audioObject);
+         audioObject.play();
+         $(this).addClass("js-playing");
+
+         audioObject.addEventListener('ended', function () {
+              $(this).removeClass("js-playing");
+          });
+        }
+
+      });
+
+      $(".js-playing").on("click", function(){
+        audioObject.pause();
+      });
+
+
 
     </script>
 
