@@ -44,19 +44,6 @@
     <script src="../static/app.js"></script>
     <script>
 
-    $(document).on('click','#js-song-link',function(){
-      var id = $(this).data(id).id;
-
-      var song   = songarray[id].song;
-      var artist = songarray[id].artist;
-      var url    = songarray[id].url;
-
-      writeSongData(4,song,artist,url);
-
-      $('#modal').css('display', 'none');
-
-    });
-
 
     </script>
   </body>

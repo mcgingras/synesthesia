@@ -41,7 +41,8 @@
 }
 
 .main{
-  background-color: #242424;
+  /*background-color: #242424;*/
+  background-color: black;
   height: 100vh;
   width:100%;
 }
@@ -91,4 +92,15 @@ input{
 
 .query-result{
   cursor: pointer;
+}
+
+
+.about{
+  box-sizing: border-box;
+  padding: 40px;
+  width: 100%;
+  color: white;
+  font-size: 36px;
+  text-align: justify;
+  line-height: 50px;
 }

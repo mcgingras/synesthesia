@@ -47,18 +47,6 @@
 
     $(".js-cover-container").css("background-image","url('../static/art03.png')");
 
-    $(document).on('click','#js-song-link',function(){
-      var id = $(this).data(id).id;
-
-      var song   = songarray[id].song;
-      var artist = songarray[id].artist;
-      var url    = songarray[id].url;
-
-      writeSongData(3,song,artist,url);
-
-      $('#modal').css('display', 'none');
-
-    });
 
     </script>
   </body>
