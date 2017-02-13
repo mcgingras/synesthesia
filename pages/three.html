@@ -17,7 +17,7 @@
   </head>
   <body>
 
-    <div class="main">
+    <div class="main js-main" data-page="3">
     <div class="playlist-container">
       <div class="playlist" id="js-playlist">
 
@@ -45,8 +45,20 @@
     <script src="../static/app.js"></script>
     <script>
 
-    $(".js-cover-container").css("background-image","url('../static/art03.png')")
+    $(".js-cover-container").css("background-image","url('../static/art03.png')");
 
+    $(document).on('click','#js-song-link',function(){
+      var id = $(this).data(id).id;
+
+      var song   = songarray[id].song;
+      var artist = songarray[id].artist;
+      var url    = songarray[id].url;
+
+      writeSongData(3,song,artist,url);
+
+      $('#modal').css('display', 'none');
+
+    });
 
     </script>
   </body>

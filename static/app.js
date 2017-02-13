@@ -4,6 +4,9 @@
 */
 
 
+// PAGE ID
+var pageID = $(".js-main").data('page');
+
 /**
 * MODAL FUNCTIONS ~---
 */
@@ -15,6 +18,41 @@ $('#js-add-song').on('click',function(){
 $('#close').on('click', function(){
   $('#modal').css('display', 'none');
 })
+
+$("#js-search-song").keyup(function(){
+  var query = $(this).val();
+  searchSongs(query);
+});
+
+
+/**
+* ADDING TO FIREBASE ~---
+*/
+$(document).on('click','#js-song-link',function(){
+  var id = $(this).data(id).id;
+
+  var song   = songarray[id].song;
+  var artist = songarray[id].artist;
+  var url    = songarray[id].url;
+
+  writeSongData(pageID,song,artist,url);
+
+  $('#modal').css('display', 'none');
+
+});
+
+
+var songRef = firebase.database().ref('albums/'+pageID);
+songRef.on('child_added', function(data) {
+  var song = data.val().song;
+  var artist = data.val().artist;
+  var url = data.val().url;
+  addtoPlaylist(song,artist,url);
+});
+
+function addtoPlaylist(song,artist,url){
+  $('#js-playlist').append('<p id="js-play-song" class="blurry-text" data-url='+url+'>'+song+' by ' +artist+'</p>');
+}
 
 
 /**

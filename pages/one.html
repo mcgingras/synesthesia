@@ -22,7 +22,7 @@
   </head>
   <body>
 
-    <div class="main">
+    <div class="main js-main" data-page="1">
     <div class="playlist-container">
       <div class="playlist" id="js-playlist">
         <button id="js-add-song">Add Song</button>
@@ -51,42 +51,6 @@
     <script>
 
     $(".js-cover-container").css("background-image","url('../static/art01.png')");
-
-
-    /**
-    * SEARCH SONG / SPOTIFY FUNCTIONS ~---
-    */
-
-    $("#js-search-song").keyup(function(){
-      var query = $(this).val();
-      searchSongs(query);
-    });
-
-    $(document).on('click','#js-song-link',function(){
-      var id = $(this).data(id).id;
-
-      var song   = songarray[id].song;
-      var artist = songarray[id].artist;
-      var url    = songarray[id].url;
-
-      writeSongData(1,song,artist,url);
-
-      $('#modal').css('display', 'none');
-
-    });
-
-
-    var songRef = firebase.database().ref('albums/1');
-    songRef.on('child_added', function(data) {
-      var song = data.val().song;
-      var artist = data.val().artist;
-      var url = data.val().url;
-      addtoPlaylist(song,artist,url);
-    });
-
-    function addtoPlaylist(song,artist,url){
-      $('#js-playlist').append('<p id="js-play-song" class="blurry-text" data-url='+url+'>'+song+' by ' +artist+'</p>');
-    }
 
 
     </script>
