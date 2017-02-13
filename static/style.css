@@ -28,29 +28,39 @@
   display: block;
   height: inherit;
   overflow: auto;
+  position: relative;
 }
 
 .playlist p{
   font-size: 14px;
   line-height: 28px;
+  cursor: pointer;
 }
+
 .flexbox-center{
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.main{
+.home{
   /*background-color: #242424;*/
   background-color: black;
   height: 100vh;
   width:100%;
 }
 
-.main a{
+.home a{
   text-decoration: none;
   color: white;
   font-size: 42px;
+}
+
+.main a{
+  text-decoration: none;
+  color: black;
+  position: absolute;
+  bottom: 0;
 }
 
 /*MODAL*/

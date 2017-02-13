@@ -51,7 +51,7 @@ songRef.on('child_added', function(data) {
 });
 
 function addtoPlaylist(song,artist,url){
-  $('#js-song-end').before('<p id="js-play-song" class="blurry-text" data-url='+url+'>'+song+' by ' +artist+'</p>');
+  $('#js-song-end').before('<p id="js-play-song" data-url='+url+'>'+song+' by ' +artist+'</p>');
 }
 
 
@@ -73,10 +73,18 @@ $(document).on('click', "#js-play-song", function(){
      $(".js-playing").removeClass("js-playing");
    }
 
+   else if($('.js-playing').length > 0){
+     audioObject.pause();
+     $(".js-playing").removeClass("js-playing");
+     $(".js-paused").removeClass('js-paused');
+     audioObject = new Audio(url);
+     audioObject.play();
+     $(this).addClass('js-playing');
+   }
+   
    else{
-   $(".js-playing").removeClass("js-playing");
-   $('.js-paused').removeClass('js-paused');
    audioObject = new Audio(url);
+   audioObject.pause();
    console.log(audioObject);
    audioObject.play();
    $(this).addClass("js-playing");
