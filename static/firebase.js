@@ -15,7 +15,7 @@
   var database = firebase.database();
 
   function writeSongData(albumId, song, artist, link) {
-    firebase.database().ref('albums/' +albumId).set({
+    firebase.database().ref('albums/' +albumId).push({
       song: song,
       artist: artist,
       url: link,

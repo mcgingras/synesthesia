@@ -11,12 +11,12 @@
     src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js">
     </script>
     <!-- modals -->
-    <script src="../scripts/vex.combined.min.js"></script>
+    <script src="../static/vex.combined.min.js"></script>
     <script>vex.defaultOptions.className = 'vex-theme-wireframe';</script>
-    <link rel="stylesheet" href="../scripts/vex.css" />
-    <link rel="stylesheet" href="../scripts/vex-theme-wireframe.css" />
+    <link rel="stylesheet" href="../static/vex.css" />
+    <link rel="stylesheet" href="../static/vex-theme-wireframe.css" />
     <!-- personal styles -->
-    <link rel="stylesheet" href="../scripts/style.css">
+    <link rel="stylesheet" href="../static/style.css">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 
   </head>
@@ -25,69 +25,69 @@
     <div class="main">
     <div class="playlist-container">
       <div class="playlist" id="js-playlist">
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-        <p>Test by Artist One</p>
-
         <button id="js-add-song">Add Song</button>
       </div>
     </div>
 
-    <div class="cover-container">
+    <div class="cover-container js-cover-container">
+    </div>
+
+
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <p>Search for a song<span id="close" style="float: right">X</span></p>
+        <input type="text" id="js-search-song" data-id="1">
+        <div id="js-results"></div>
+      </div>
+    </div>
+
 
     </div>
 
-    <div id="js-add-song-modal" class="hidden add-song-modal">
-      <div class="add-song-modal-box"></div>
-      <input type="text" id="js-query">
-    </div>
+    <script src="../static/spotify.js"></script>
+    <script src="../static/firebase.js"></script>
+    <script src="../static/app.js"></script>
 
-    </div>
-
-    <script src="../scripts/spotify.js"></script>
-    <script src="../scripts/firebase.js"></script>
     <script>
 
-    $('#js-add-song').on('click',function(){
+    $(".js-cover-container").css("background-image","url('../static/art01.png')");
 
-      $('#js-add-song-modal').show();
+
+    /**
+    * SEARCH SONG / SPOTIFY FUNCTIONS ~---
+    */
+
+    $("#js-search-song").keyup(function(){
+      var query = $(this).val();
+      searchSongs(query);
+    });
+
+    $(document).on('click','#js-song-link',function(){
+      var id = $(this).data(id).id;
+
+      var song   = songarray[id].song;
+      var artist = songarray[id].artist;
+      var url    = songarray[id].url;
+
+      writeSongData(1,song,artist,url);
+
+      $('#modal').css('display', 'none');
 
     });
 
-//     vex.dialog.open({
-//     message: 'Enter your username and password:',
-//     input: [
-//         '<input name="username" type="text" placeholder="Username" required />',
-//         '<input name="password" type="password" placeholder="Password" required />'
-//     ].join(''),
-//     buttons: [
-//         $.extend({}, vex.dialog.buttons.YES, { text: 'Login' }),
-//         $.extend({}, vex.dialog.buttons.NO, { text: 'Back' })
-//     ],
-//     callback: function (data) {
-//         if (!data) {
-//             console.log('Cancelled')
-//         } else {
-//             console.log('Username', data.username, 'Password', data.password)
-//         }
-//     }
-// })
+
+    var songRef = firebase.database().ref('albums/1');
+    songRef.on('child_added', function(data) {
+      var song = data.val().song;
+      var artist = data.val().artist;
+      var url = data.val().url;
+      addtoPlaylist(song,artist,url);
+    });
+
+    function addtoPlaylist(song,artist,url){
+      $('#js-playlist').append('<p id="js-play-song" class="blurry-text" data-url='+url+'>'+song+' by ' +artist+'</p>');
+    }
+
 
     </script>
   </body>
