@@ -17,6 +17,9 @@ $('#close').on('click', function(){
 })
 
 
+/**
+* AUDIO FUNCTIONS ~---
+*/
 $(document).on('click', "#js-play-song", function(){
   var url = $(this).data('url');
 
