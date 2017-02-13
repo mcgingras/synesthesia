@@ -94,6 +94,12 @@ input{
   cursor: pointer;
 }
 
+.song-button{
+  margin-left: 200px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 
 .about{
   box-sizing: border-box;

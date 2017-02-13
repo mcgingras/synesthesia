@@ -51,7 +51,7 @@ songRef.on('child_added', function(data) {
 });
 
 function addtoPlaylist(song,artist,url){
-  $('#js-playlist').append('<p id="js-play-song" class="blurry-text" data-url='+url+'>'+song+' by ' +artist+'</p>');
+  $('#js-song-end').before('<p id="js-play-song" class="blurry-text" data-url='+url+'>'+song+' by ' +artist+'</p>');
 }
 
 
