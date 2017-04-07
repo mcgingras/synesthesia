@@ -130,3 +130,7 @@ input{
   text-align: justify;
   line-height: 50px;
 }
+
+.js-playing{
+  color: #576873;
+}

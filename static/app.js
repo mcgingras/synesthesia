@@ -55,7 +55,7 @@ $(document).on('click', "#js-play-song", function(){
    else{
    audioObject = new Audio(url);
    audioObject.pause();
-   console.log(audioObject);
+    $(".js-paused").removeClass('js-paused');
    audioObject.play();
    $(this).addClass("js-playing");
 
